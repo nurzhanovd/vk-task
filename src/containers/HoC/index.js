@@ -1,0 +1,1 @@
+export { composedTableWrapper } from './TableConnector';
