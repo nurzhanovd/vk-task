@@ -1,3 +1,6 @@
+import uid from 'uniqid'
+import { ColumnTypes } from '../types'
+
 const initialState = [
     {
         id: 'table-1',
@@ -11,12 +14,15 @@ const initialState = [
 
 export function boardReducer(state = initialState, action) {
     switch(action.type) {
-        case 'add_column':
+        case ColumnTypes.ADD_COLUMN:
             return [
                 ...state,
-                action.payload
+                {
+                    id: uid(),
+                    title: action.payload
+                }
             ]
         default:
-            return state;
+            return state
     }
 }

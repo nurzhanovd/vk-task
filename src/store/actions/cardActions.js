@@ -1,5 +1,7 @@
+import { CardTypes } from '../types'
+
 export const insertCard = (card, where) => ({
-    type: 'insert_card_to_column',
+    type: CardTypes.INSERT_CARD_TO_COLUMN,
     payload: {
         card,
         where
@@ -7,7 +9,7 @@ export const insertCard = (card, where) => ({
 })
 
 export const removeCardFromColumn = (targetCard, columnId) => ({
-    type: 'remove_card_from_column',
+    type: CardTypes.REMOVE_CARD_FROM_COLUMN,
     payload: {
         targetCard,
         columnId
@@ -15,7 +17,7 @@ export const removeCardFromColumn = (targetCard, columnId) => ({
 })
 
 export const addCardToColumn = (title, targetColumnId) => ({
-    type: 'add_card_to_column',
+    type: CardTypes.ADD_CARD_TO_COLUMN,
     payload: {
         targetColumnId,
         title

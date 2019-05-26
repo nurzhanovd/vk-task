@@ -1,22 +1,26 @@
-import React from 'react';
-import './styles.scss';
-import { Draggable } from 'react-beautiful-dnd';
+import React from 'react'
+import './styles.scss'
+import { Draggable } from 'react-beautiful-dnd'
 
 
-export const Card = ({cardTitle, index, id}) => (
+export const Card = ({card: {title, id}, index}) => (
     <Draggable
         draggableId={ id }
         index={ index }
-    >
+        >
         {
-            provided => (
+            (provided, { isDragging }) => (
                 <div
                     className='card'
                     { ...provided.draggableProps }
                     { ...provided.dragHandleProps }
                     ref={ provided.innerRef }
                 >
-                    { cardTitle }
+                    <p
+                        className='card__text'
+                    >
+                        { title }
+                    </p>
                 </div>
             )
         }

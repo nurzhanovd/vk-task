@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { Card } from './components/Card';
-import { Droppable } from 'react-beautiful-dnd';
-import { ColumnForm } from './components';
-import './styles.scss';
+import React, { useState } from 'react'
+import { Card, CardList } from './components'
+import { Droppable } from 'react-beautiful-dnd'
+import { ColumnForm } from './components'
+import './styles.scss'
 
 export const Column = ({ id, title, cards, onSubmit }) => {
 
     const [ showForm, setShowForm ] = useState(false)
-    const [ formText, setFormText ] = useState('')
     
     const toggleShowForm = () => setShowForm(!showForm)
 
-    const createColumn = !cards;
+    const createColumn = !cards && !id
 
     const tableFormProps = {
         onClose: toggleShowForm,
@@ -23,15 +22,17 @@ export const Column = ({ id, title, cards, onSubmit }) => {
     return (
         <div className='column__wrapper'>
             <div className='column'>
-                { !createColumn && (
+                { title && (
                     <header className='column__header'>
                     { title }
                     </header>
                 )}
-                {
-                    !createColumn ? (
+                
+                { !createColumn && 
+                    (
                         <Droppable
-                            droppableId={ id }
+                            droppableId={ id || 'noop' }
+                            isDropDisabled={ !id }
                         >
                             { provided => (
                                 <section 
@@ -39,25 +40,22 @@ export const Column = ({ id, title, cards, onSubmit }) => {
                                     ref={ provided.innerRef }
                                     {...provided.droppableProps}
                                 >
-                                    {   
-                                        cards.map((card, ind) => (
-                                            <Card
-                                                cardTitle={ card.title }
-                                                index={ ind }
-                                                id={ card.id }
-                                            /> 
-                                    ))}
+                                    
+                                    <CardList cardList={ cards } />
                                     { provided.placeholder }
                                 </section>
                             )
                                 
                             }
                         </Droppable>
-                    ) : (
-                        <section className='column__card-list'/>
                     )
                 }
-                <footer className='column__footer'>
+                <footer 
+                    className='column__footer'
+                    style={{
+                        marginTop: cards && cards.length ? 5 : 0
+                    }}
+                >
                         {
                             showForm ? (
                                 <ColumnForm

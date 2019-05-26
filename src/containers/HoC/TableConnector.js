@@ -1,7 +1,7 @@
-import React from 'react';
-import { insertCard, removeCardFromColumn, addCardToColumn } from '../../store/actions'
-import { compose } from 'redux';
-import { connect } from 'react-redux';
+import React from 'react'
+import { insertCard, removeCardFromColumn, addCardToColumn, addColumn } from '../../store/actions'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
 
 const TableWrapper = Component => (props) => {
     
@@ -16,7 +16,8 @@ export const composedTableWrapper = compose(
     (dispatch) => ({
         insertCard: (card, where) => dispatch(insertCard(card, where)),
         removeCardFromColumn: (targetCard, columnId) => dispatch(removeCardFromColumn(targetCard, columnId)),
-        addCardToColumn: (title, columndId) => dispatch(addCardToColumn(title, columndId))
+        addCardToColumn: (title, columndId) => dispatch(addCardToColumn(title, columndId)),
+        addColumn: title => dispatch(addColumn(title))
     })),
     TableWrapper
 )

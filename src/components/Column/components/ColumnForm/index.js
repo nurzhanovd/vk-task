@@ -1,1 +1,1 @@
-export { ColumnForm } from './ColumnForm';
+export { ColumnForm } from './ColumnForm'

@@ -1,47 +1,45 @@
-import React from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
-import { composedTableWrapper } from '../HoC';
-import { Column } from '../../components';
-import './styles.scss';
+import React from 'react'
+import { DragDropContext } from 'react-beautiful-dnd'
+import { composedTableWrapper } from '../HoC'
+import { Column } from '../../components'
+import './styles.scss'
 
 
 class Board extends React.Component {
 
-    onDragEnd = ({ destination, source, draggableId: cardId }) => {
+    onDragEnd = ({ destination, source, draggableId }) => {
         const {
             removeCardFromColumn,
             insertCard,
             cards
-        } = this.props;
+        } = this.props
         if (destination) {
             const {
                 droppableId: destID,
                 index: destIndex
-            } = destination;
+            } = destination
 
             const {
                 droppableId: srcID,
                 index: srcIndex
-            } = source;
+            } = source
 
-            const isChangeColumn = destID !== srcID
-            const isChangeOrder = destIndex !== srcIndex
             const card = cards[srcID][srcIndex]
             
-            if ( isChangeColumn ) {
-                insertCard(card, {columnId: destID, index: destIndex})
-                removeCardFromColumn(card, srcID)
-            }
+            removeCardFromColumn(card, srcID)
+            insertCard(card, {columnId: destID, index: destIndex})
         }
     }
 
     createNewCard = (columnId) => (text) => this.props.addCardToColumn(text, columnId)
 
+
     render() {
         const {
             columns,
             cards,
-        } = this.props;
+            addColumn
+        } = this.props
 
         return (
             <DragDropContext
@@ -66,7 +64,7 @@ class Board extends React.Component {
                         className='board__column'
                     >
                         <Column 
-                            // onSubmit={  }
+                            onSubmit={ addColumn }
                         />
                     </div>
                 </div>
@@ -75,7 +73,7 @@ class Board extends React.Component {
     }
 }
 
-export default composedTableWrapper(Board);
+export default composedTableWrapper(Board)
 
 
 

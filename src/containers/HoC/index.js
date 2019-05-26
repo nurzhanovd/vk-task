@@ -1,1 +1,1 @@
-export { composedTableWrapper } from './TableConnector';
+export { composedTableWrapper } from './TableConnector'

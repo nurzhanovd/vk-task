@@ -5,12 +5,11 @@ $column-padding: 10px;
     height: 100%;
     
     .column {
+        display: flex;
+        flex-direction: column;
         background-color: #dfe3e6;
         border-radius: 4px;
         padding: $column-padding;
-        display: flex;
-        flex-direction: column;
-
         max-height: 100%;
         width: 100%;
         flex: 0 0 auto;
@@ -18,16 +17,19 @@ $column-padding: 10px;
         &__header {
             width: 100%;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
     
         &__card-list {
             flex: 1 1 auto;
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: auto;
             height: auto;
+            min-height: 10px;
             max-height: 80%;
-            z-index: 20;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
             
             &__item {
                 &:not(:last-child) {
@@ -38,12 +40,12 @@ $column-padding: 10px;
     
         &__footer {            
             flex: 0 0 auto;
-            box-sizing: border-box;
+            z-index: 10;
             &__button {
                 margin: auto;
                 font-size: 14px;
                 cursor: pointer;
-    
+                background-color: #dfe3e6;
                 &, &:focus {
                     border: none;
                     outline: none;         
