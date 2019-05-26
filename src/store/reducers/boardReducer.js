@@ -4,11 +4,15 @@ import { ColumnTypes } from '../types'
 const initialState = [
     {
         id: 'table-1',
-        title: 'Первая таблица',
+        title: 'TO DO',
     },
     {
         id: 'table-2',
-        title: 'Вторая таблица'
+        title: 'In Progress'
+    },
+    {
+        id: 'table-3',
+        title: 'Done'
     }
 ]
 

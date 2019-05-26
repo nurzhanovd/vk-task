@@ -13,31 +13,54 @@ const initialState = {
         },
         {
             id: uid(),
-            title: "Посадить дерево"
+            title: "Изучить концепцию ФП"
         },
         {
             id: uid(),
-            title: "Посадить дерево Посадить деревоПосадить деревоПосадить деревоПосадить деревоПосадить дерево"
+            title: "Восполнить мат. базу"
         },
-        
     ],
     'table-2': [
         {
             id: uid(),
-            title: "Почитать про FP"
+            title: "Использовать point-free style"
         },
+        {
+            id: uid(),
+            title: "Досконально изучить графы и деревья"
+        },
+        {
+            id: uid(),
+            title: "Начать изучать Elixir"
+        },
+        {
+            id: uid(),
+            title: "Востановить занятие по боксу"
+        },
+        {
+            id: uid(),
+            title: "Преисполниться в познании и прожить сто триллионов миллиардов на таких же триллионах триллиардах планет"
+        }
     ],
     'table-3': [
         {
             id: uid(),
-            title: "Почитать про ООП"
+            title: "Изучить ООП"
+        },
+        {
+            id: uid(),
+            title: "Почитать про иммутабельность"
+        },
+        {
+            id: uid(),
+            title: "Сделать клон Trello"
         },
     ],
 }
 
 const removeCardById = ({id: targetId}) => ({id}) => id !== targetId
 
-const insertCard = (card, index, cards) => [
+const insertCard = (card, index, cards = []) => [
     ...cards.slice(0, index),
     card,
     ...cards.slice(index)
